@@ -2,24 +2,22 @@ import SwiftUI
 
 @main
 struct ArmotecSteelTradingApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
+    init() {
+        // Configure dark titanium tab bar appearance
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor(red: 0.09, green: 0.11, blue: 0.14, alpha: 1.0)
+
+        UITabBar.appearance().standardAppearance = appearance
+        if #available(iOS 15.0, *) {
+            UITabBar.appearance().scrollEdgeAppearance = appearance
         }
     }
-}
 
-struct ContentView: View {
-    var body: some View {
-        VStack(spacing: 16) {
-            Image(systemName: "sparkles")
-                .font(.largeTitle)
-            Text("Your app is ready.")
-                .font(.title)
-                .fontWeight(.semibold)
-            Text("Ask 10x to start building.")
-                .foregroundStyle(.secondary)
+    var body: some Scene {
+        WindowGroup {
+            MainPortalView()
+                .preferredColorScheme(.dark)
         }
-        .padding()
     }
 }
